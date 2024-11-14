@@ -1,0 +1,54 @@
+managed implementation in class ZBP_R_ZT_BATCH_FILES unique;
+strict ( 2 );
+with draft;
+define behavior for ZR_ZT_BATCH_FILES alias Files
+persistent table zzt_batch_files
+draft table zzt_batch_file_d
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( global )
+with additional save
+{
+  field ( readonly )
+  CreatedAt,
+  CreatedBy,
+  LastChangedAt,
+  LastChangedBy,
+  LocalLastChangedAt;
+
+
+  field ( features : instance )
+  JobCount,
+  JobName,
+  LogHandle;
+
+  field ( numbering : managed )
+  UUID;
+
+  create;
+  update ( features : instance );
+  delete ( features : instance );
+
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zzt_batch_files
+    {
+      UUID               = uuid;
+      UuidConf           = uuid_conf;
+      MimeType           = mime_type;
+      Attachment         = attachment;
+      FileName           = file_name;
+      Jobcount           = jobcount;
+      Jobname            = jobname;
+      Loghandle          = loghandle;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
