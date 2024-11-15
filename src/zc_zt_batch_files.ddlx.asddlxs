@@ -30,7 +30,11 @@ annotate view ZC_ZT_BATCH_FILES with
        position:        20
      }
      ]
-  @UI.hidden: true
+  @UI.lineItem: [ {
+    position: 100 ,
+    importance: #LOW,
+    label: 'UUID'
+  } ]
   UUID;
 
   @UI.fieldGroup: [ { position: 10, qualifier: 'General_FG', label: '批导编号' } ]
@@ -43,7 +47,7 @@ annotate view ZC_ZT_BATCH_FILES with
   label: '批导名称'
   } ]
   @UI.fieldGroup: [ { position: 20, qualifier: 'General_FG', label: '批导名称' } ]
-  objectname;
+  Objectname;
 
   @UI.hidden: true
   MimeType;
@@ -79,7 +83,7 @@ annotate view ZC_ZT_BATCH_FILES with
                          criticality: 'JobStatusCriticality',
                          criticalityRepresentation: #WITH_ICON }
        }
-  jobstatustext;
+  JobStatusText;
 
   @UI.lineItem: [ {
   position: 50,
@@ -98,7 +102,7 @@ annotate view ZC_ZT_BATCH_FILES with
                          criticality: 'LogStatusCriticality',
                          criticalityRepresentation: #WITH_ICON }
        }
-  logstatustext;
+  LogStatusText;
 
   @UI.lineItem: [ {
     position: 60 ,
@@ -119,19 +123,19 @@ annotate view ZC_ZT_BATCH_FILES with
     importance: #LOW,
     label: 'Log Handle'
   } ]
-  Loghandle;
+  LogHandle;
 
 
   @UI.hidden: true
-  jobstatus;
+  JobStatus;
   @UI.hidden: true
-  jobstatuscriticality;
+  JobStatusCriticality;
   @UI.hidden: true
-  logstatus;
+  LogStatus;
   @UI.hidden: true
-  logstatuscriticality;
+  LogStatusCriticality;
   @UI.hidden: true
-  applicationlogurl;
+  ApplicationLogUrl;
   @UI.hidden: true
   LocalLastChangedAt;
 }

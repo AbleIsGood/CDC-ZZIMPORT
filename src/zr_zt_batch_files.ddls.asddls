@@ -29,7 +29,8 @@ define root view entity ZR_ZT_BATCH_FILES
       last_changed_at                      as LastChangedAt,
       @Semantics.systemDateTime.localInstanceLastChangedAt: true
       local_last_changed_at                as LocalLastChangedAt,
+ 
 
-
+      
       _configuration
 }

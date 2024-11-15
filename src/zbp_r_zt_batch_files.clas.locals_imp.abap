@@ -48,7 +48,7 @@ ENDCLASS.
 CLASS lsc_zr_zt_batch_files IMPLEMENTATION.
 
   METHOD save_modified. " Trigger Job
-    DATA job_template_name TYPE cl_apj_rt_api=>ty_template_name VALUE 'ZZ_JT_BATCH'.
+    DATA job_template_name TYPE cl_apj_rt_api=>ty_template_name VALUE 'ZZCL_JT_BATCH'.
 
     DATA job_start_info TYPE cl_apj_rt_api=>ty_start_info.
     DATA job_parameters TYPE cl_apj_rt_api=>tt_job_parameter_value.

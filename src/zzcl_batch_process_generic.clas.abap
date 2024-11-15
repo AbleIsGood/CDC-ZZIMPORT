@@ -232,7 +232,7 @@ CLASS ZZCL_BATCH_PROCESS_GENERIC IMPLEMENTATION.
           kind = if_apj_dt_exec_object=>parameter
           sign = 'I'
           option = 'EQ'
-          low = 'A9BD8E8D0EBA1EDEB5C200FB75114E7A' )
+          low = '13A4CF169E051EDFA8E34671B5410E15' )
       ).
 
     TRY.
@@ -354,7 +354,10 @@ CLASS ZZCL_BATCH_PROCESS_GENERIC IMPLEMENTATION.
           "handle exception
       ENDTRY.
 
-      MODIFY ENTITY zr_zt_batch_files UPDATE FIELDS ( jobcount jobname loghandle ) WITH VALUE #( ( jobcount = jobcount jobname = jobname loghandle = log_handle uuid = uuid ) ).
+      MODIFY ENTITY zr_zt_batch_files
+      UPDATE FIELDS ( jobcount jobname loghandle )
+      WITH VALUE #( ( jobcount = jobcount jobname = jobname loghandle = log_handle
+          %key-uuid = uuid ) ).
       COMMIT ENTITIES.
     ENDIF.
   ENDMETHOD.
