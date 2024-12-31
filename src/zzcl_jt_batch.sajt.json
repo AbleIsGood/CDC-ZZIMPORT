@@ -1,0 +1,19 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "批导后台JOB模板",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZZ_JCE_BATCH"
+  },
+  "parameters": {
+    "singleValueParameters": [
+      {
+        "name": "P_ID",
+        "value": ""
+      }
+    ]
+  }
+}

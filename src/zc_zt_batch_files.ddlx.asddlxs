@@ -1,0 +1,141 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Batch Import File',
+    typeNamePlural: '数据文件',
+    imageUrl: 'Attachment'
+  },
+  presentationVariant:[{
+    visualizations: [{type: #AS_LINEITEM}],
+    sortOrder: [ { by: 'LocalLastChangedAt' , direction: #DESC } ]
+  }]
+}
+annotate view ZC_ZT_BATCH_FILES with
+{
+  @UI.facet: [
+  {
+       id:              'General',
+       targetQualifier: 'General_FG',
+       purpose:         #STANDARD,
+       type:            #FIELDGROUP_REFERENCE,
+       label:           '基本设置',
+       position:        10
+     },
+  {
+       id:              'Job',
+       targetQualifier: 'Job_FG',
+       purpose:         #STANDARD,
+       type:            #FIELDGROUP_REFERENCE,
+       label:           '后台作业',
+       position:        20
+     }
+     ]
+  @UI.lineItem: [ {
+    position: 100 ,
+    importance: #LOW,
+    label: 'UUID'
+  } ]
+  UUID;
+
+  @UI.fieldGroup: [ { position: 10, qualifier: 'General_FG', label: '批导编号' } ]
+  @EndUserText.label: '批导编号'
+  UuidConf;
+
+  @UI.lineItem: [ {
+  position: 10 ,
+  importance: #HIGH,
+  label: '批导名称'
+  } ]
+  @UI.fieldGroup: [ { position: 20, qualifier: 'General_FG', label: '批导名称' } ]
+  Objectname;
+
+  @UI.hidden: true
+  MimeType;
+
+  @UI.lineItem: [ {
+    position: 20 ,
+    importance: #HIGH,
+    label: '上传批导文件'
+  } ]
+  @UI.fieldGroup: [ { position: 30, qualifier: 'General_FG', label: '上传批导文件' } ]
+  Attachment;
+
+  @UI.selectionField: [ { position: 20 } ]
+  @UI.lineItem: [ {
+    position: 30 ,
+    importance: #HIGH,
+    label: '导入文件'
+  } ]
+  FileName;
+
+  @UI.lineItem: [ {
+  position: 40,
+  importance: #HIGH,
+  label: '作业状态',
+  criticality: 'JobStatusCriticality'
+  } ]
+  @UI: { fieldGroup: [ { qualifier: 'Job_FG',
+                         position: 10 ,
+                         label: '作业状态',
+                         criticality: 'JobStatusCriticality' } ] ,
+         dataPoint:    { title: 'Generation Job Status',
+                         targetValueElement: 'JobStatusText',
+                         criticality: 'JobStatusCriticality',
+                         criticalityRepresentation: #WITH_ICON }
+       }
+  JobStatusText;
+
+  @UI.lineItem: [ {
+  position: 50,
+  importance: #HIGH,
+  label: '日志',
+  criticality: 'LogStatusCriticality',
+  type: #WITH_URL,
+  url: 'ApplicationLogUrl'
+  } ]
+  @UI: { fieldGroup: [ { qualifier: 'Job_FG',
+                         position: 20 ,
+                         label: '日志',
+                         criticality: 'LogStatusCriticality' } ] ,
+         dataPoint:    { title: 'Generation Log',
+                         targetValueElement: 'LogStatusText',
+                         criticality: 'LogStatusCriticality',
+                         criticalityRepresentation: #WITH_ICON }
+       }
+  LogStatusText;
+
+  @UI.lineItem: [ {
+    position: 60 ,
+    importance: #LOW,
+    label: '作业名称'
+  } ]
+  Jobname;
+
+  @UI.lineItem: [ {
+    position: 70 ,
+    importance: #LOW,
+    label: 'Job Count'
+  } ]
+  Jobcount;
+
+  @UI.lineItem: [ {
+    position: 80 ,
+    importance: #LOW,
+    label: 'Log Handle'
+  } ]
+  LogHandle;
+
+
+  @UI.hidden: true
+  JobStatus;
+  @UI.hidden: true
+  JobStatusCriticality;
+  @UI.hidden: true
+  LogStatus;
+  @UI.hidden: true
+  LogStatusCriticality;
+  @UI.hidden: true
+  ApplicationLogUrl;
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

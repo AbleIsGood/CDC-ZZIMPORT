@@ -1,0 +1,55 @@
+managed implementation in class ZBP_R_ZT_BATCH_CONFIG unique;
+//strict ( 2 );
+strict;
+with draft;
+define behavior for ZR_ZT_BATCH_CONFIG alias Configuration
+persistent table zzt_batch_config
+draft table ZZT_BATCH_CONF_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+
+{
+  field ( readonly )
+   UUID,
+   CreatedAt,
+   CreatedBy,
+   LastChangedAt,
+   LastChangedBy,
+   LocalLastChangedAt;
+
+  field ( numbering : managed )
+   UUID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZZT_BATCH_CONFIG
+  {
+    UUID = uuid;
+    Object = object;
+    Objectname = objectname;
+    Fmname = fmname;
+    Mimetype = mimetype;
+    Sheetname = sheetname;
+    Structname = structname;
+    MimeTypeForTemplate = mime_type_for_template;
+    Template = template;
+    FileName = file_name;
+    StartLine = start_line;
+    StartColumn = start_column;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}

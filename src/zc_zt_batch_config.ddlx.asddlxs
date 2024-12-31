@@ -1,0 +1,134 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: '批导配置',
+    typeNamePlural: '批导配置'
+  }
+}
+annotate view ZC_ZT_BATCH_CONFIG with
+{
+  @UI.facet: [ {
+    id: 'idIdentification',
+    type: #IDENTIFICATION_REFERENCE,
+    label: '基本信息',//'Basic',
+    position: 10
+  },
+  {
+        id:              'Function',
+        targetQualifier: 'Function_FG',
+        purpose:         #STANDARD,
+        type:            #FIELDGROUP_REFERENCE,
+        label:           '函数数据结构', //'ABAP Functions',
+        position:        20
+      },
+      {
+        id:              'File',
+        targetQualifier: 'File_FG',
+        purpose:         #STANDARD,
+        type:            #FIELDGROUP_REFERENCE,
+        label:           '文件设置',//'File Processing',
+        position:        30
+      },
+    {
+        id:              'Template',
+        targetQualifier: 'Template_FG',
+        purpose:         #STANDARD,
+        type:            #FIELDGROUP_REFERENCE,
+        label:           '上传模板',//'Template Area',
+        position:        40
+      } ]
+
+
+  @UI.hidden: true
+  UUID;
+
+  @UI.lineItem: [ {
+    position: 10 ,
+    importance: #MEDIUM,
+    label: '导入编号'
+  } ]
+  @UI.identification: [ {
+    position: 10 ,
+    label: '导入编号'
+  } ]
+  Object;
+
+  @UI.lineItem: [ {
+    position: 20 ,
+    importance: #MEDIUM,
+    label: '导入名称'
+  } ]
+  @UI.identification: [ {
+    position: 20 ,
+    label: '导入名称'
+  } ]
+  Objectname;
+
+  @UI.lineItem: [ {
+    position: 30 ,
+    importance: #MEDIUM,
+    label: '导入函数'
+  } ]
+  @UI.fieldGroup:     [ { position: 10, qualifier: 'Function_FG',label: '导入函数' } ]
+  Fmname;
+
+  @UI.lineItem: [ {
+    position: 40 ,
+    importance: #MEDIUM,
+    label: ''
+  } ]
+  @UI.fieldGroup:     [ { position: 10, qualifier: 'File_FG' } ]
+  @UI.hidden: true
+  Mimetype;
+
+  @UI.lineItem: [ {
+    position: 50 ,
+    importance: #MEDIUM,
+    label: 'Excel Sheet 页名称'
+  } ]
+  @UI.fieldGroup:     [ { position: 20, qualifier: 'File_FG' ,label: 'Excel Sheet 页名称'} ]
+  Sheetname;
+
+  @UI.lineItem: [ {
+    position: 60 ,
+    importance: #MEDIUM,
+    label: '导入结构'
+  } ]
+  @UI.fieldGroup:     [ { position: 20, qualifier: 'Function_FG',label: '导入结构' } ]
+  Structname;
+
+  @UI.lineItem: [ {
+    position: 61 ,
+    importance: #MEDIUM,
+    label: ''
+  } ]
+  @UI.fieldGroup:     [ { position: 61, qualifier: 'Template_FG' } ]
+  @UI.hidden: true
+  MimeTypeForTemplate;
+
+  @UI.lineItem: [ {
+    position: 62 ,
+    importance: #MEDIUM,
+    label: '导入文件'
+  } ]
+  @UI.fieldGroup:     [ { position: 62, qualifier: 'Template_FG' , label: '导入文件'} ]
+  Template;
+
+  @UI.lineItem: [ {
+    position: 63 ,
+    importance: #MEDIUM,
+    label: ''
+  } ]
+  @UI.fieldGroup:     [ { position: 63, qualifier: 'Template_FG' } ]
+  @UI.hidden: true
+  FileName;
+
+  @UI.fieldGroup:     [ { position: 30, qualifier: 'File_FG', label:'Excel 开始行'} ]
+  StartLine;
+
+  @UI.fieldGroup:     [ { position: 40, qualifier: 'File_FG' , label:'Excel 开始列(A/B/C)' } ]
+  StartColumn;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+}
